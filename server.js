@@ -10,16 +10,16 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware to parse JSON bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const corsOptions = {
   credentials: true,
   origin: "https://nazar-babii.vercel.app",
 };
 
 app.use(cors(corsOptions));
-app.use(express.json());
-
-// Serve static files (if you have any)
-app.use(express.static("public"));
 
 // Handle form submission
 app.post("/submit-form", (req, res) => {
