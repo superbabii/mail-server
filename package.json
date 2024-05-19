@@ -1,0 +1,27 @@
+{
+  "name": "mail_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/superbabii/mail-server.git"
+  },
+  "keywords": [
+    "Mail-server"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/superbabii/mail-server/issues"
+  },
+  "homepage": "https://github.com/superbabii/mail-server#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13"
+  }
+}
