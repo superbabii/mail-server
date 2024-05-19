@@ -30,31 +30,29 @@ app.post("/submit-form", (req, res) => {
     return res.status(400).json({ error: "Please fill in all fields." });
   }
 
-  res.status(200).json({ message: 'Form submitted successfully!' });
+  // Set up Nodemailer
+  const transporter = nodemailer.createTransport({
+    service: "Gmail", // Use your email service provider
+    auth: {
+      user: process.env.EMAIL_USER, // Your email from environment variable
+      pass: process.env.EMAIL_PASS, // Your email password or app password from environment variable
+    },
+  });
 
-//   // Set up Nodemailer
-//   const transporter = nodemailer.createTransport({
-//     service: "Gmail", // Use your email service provider
-//     auth: {
-//       user: process.env.EMAIL_USER, // Your email from environment variable
-//       pass: process.env.EMAIL_PASS, // Your email password or app password from environment variable
-//     },
-//   });
+  const mailOptions = {
+    from: email,
+    to: process.env.RECEIVER_EMAIL, // Where you want to receive the emails
+    subject: subject,
+    text: `From: ${name} \n\n${message}`,
+  };
 
-//   const mailOptions = {
-//     from: email,
-//     to: process.env.RECEIVER_EMAIL, // Where you want to receive the emails
-//     subject: subject,
-//     text: `From: ${name} \n\n${message}`,
-//   };
-
-//   transporter.sendMail(mailOptions, (error, info) => {
-//     if (error) {
-//       console.error("Error sending email:", error);
-//       return res.status(500).json({ error: "Failed to send message." });
-//     }
-//     res.status(200).json({ message: "Message sent successfully!" });
-//   });
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.error("Error sending email:", error);
+      return res.status(500).json({ error: "Failed to send message." });
+    }
+    res.status(200).json({ message: "Message sent successfully!" });
+  });
 });
 
 app.listen(port, () => {
