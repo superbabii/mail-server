@@ -32,16 +32,16 @@ app.post("/submit-form", (req, res) => {
 
   // Set up Nodemailer
   const transporter = nodemailer.createTransport({
-    service: "Gmail", // Use your email service provider
+    service: "Gmail", 
     auth: {
-      user: process.env.EMAIL_USER, // Your email from environment variable
-      pass: process.env.EMAIL_PASS, // Your email password or app password from environment variable
+      user: process.env.EMAIL_USER, 
+      pass: process.env.EMAIL_PASS, 
     },
   });
 
   const mailOptions = {
     from: email,
-    to: process.env.RECEIVER_EMAIL, // Where you want to receive the emails
+    to: process.env.RECEIVER_EMAIL, 
     subject: subject,
     text: `From: ${name} \n\n${message}`,
   };
